@@ -22,10 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/api', api);
-app.use(express.static(path.join(__dirname+"/client/smooch-desk", 'build')));
+app.get("*",(req,res)=>{
+  res.json({welcome:"to indira"})
+})
+/*app.use(express.static(path.join(__dirname+"/client/smooch-desk", 'build')));
 app.get("*",function(req,res){
   res.redirect("/index.html")
-})
+})*/
 
 
 // catch 404 and forward to error handler
