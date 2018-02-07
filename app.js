@@ -8,6 +8,8 @@ const env = require('node-env-file');
 env(__dirname + '/.env');
 
 var api = require('./routes/api');
+var hook = require('./routes/hook');
+
 
 var app = express();
 
@@ -27,6 +29,8 @@ app.use(function(req, res, next) {
   next();
 });
 app.use('/api', api);
+app.use('/hook', api);
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.get("*",(req,res)=>{
   res.json({welcome:"to indira"})
