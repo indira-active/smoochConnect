@@ -4,8 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-const env = require('node-env-file');
-env(__dirname + '/.env');
+/*const env = require('node-env-file');
+env(__dirname + '/.env');*/
 
 var api = require('./routes/api');
 
