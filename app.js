@@ -4,7 +4,8 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const SmoochCore = require('smooch-core')
+const SmoochCore = require('smooch-core');
+const cors = require('cors')
 const env = require('node-env-file');
 const smoochFunctions = require('./smooch-functions')
 env(__dirname + '/.env');
