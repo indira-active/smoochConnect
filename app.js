@@ -9,14 +9,12 @@ const SmoochCore = require('smooch-core');
 const cors = require('cors')
 const env = require('node-env-file');
 const mongoose = require('mongoose');
-const smoochFunctions = require('./smooch-functions')
 env(__dirname + '/.env');
-/*const smooch = new SmoochCore({
+const smooch = new SmoochCore({
     keyId: process.env.KEY_ID,
     secret: process.env.SECRET,
     scope: 'app', // account or app
 });
-smoochFunctions(smooch);*/
 const api = require('./routes/api');
 const hook = require('./routes/hook');
 
@@ -60,7 +58,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-return app
+return {app,smooch}
 }
 
 module.exports = baseScript;
