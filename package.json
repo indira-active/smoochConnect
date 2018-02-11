@@ -11,12 +11,14 @@
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
+    "cors": "2.8.4",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "jsonwebtoken": "8.1.1",
     "morgan": "~1.9.0",
     "node-env-file": "0.1.8",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "smooch-core": "5.7.0"
   }
 }

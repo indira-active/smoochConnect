@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  componentWillMount = (){
+
+  }
   render() {
     return (
       <div className="App">
@@ -11,7 +14,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Indira</h1>
         </header>
         <p className="App-intro">
-          this will be the site of our smooch desk interface!
+          messages
         </p>
       </div>
     );
