@@ -8,12 +8,12 @@ const SmoochCore = require('smooch-core')
 const env = require('node-env-file');
 const smoochFunctions = require('./smooch-functions')
 env(__dirname + '/.env');
-const smooch = new SmoochCore({
+/*const smooch = new SmoochCore({
     keyId: process.env.KEY_ID,
     secret: process.env.SECRET,
     scope: 'app', // account or app
 });
-smoochFunctions(smooch);
+smoochFunctions(smooch);*/
 const api = require('./routes/api');
 const hook = require('./routes/hook');
 
