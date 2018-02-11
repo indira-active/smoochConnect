@@ -35,7 +35,7 @@ app.use(cors());
 app.use('/api', api);
 app.use('/hook', api);
 
-app.use(express.static('./client/smooch-desk/build'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.get("*",(req,res)=>{
   res.json({welcome:"to indira"})
 })
