@@ -41,7 +41,7 @@ class Chat extends Component {
 
     submitMessage(e) {
         e.preventDefault();
-
+        socket.emit("message",this.state.text)
         this.setState({
             chats: this.state.chats.concat([{
                 username: "admin",
