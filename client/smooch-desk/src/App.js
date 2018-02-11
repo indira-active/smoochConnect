@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  componentWillMount = (){
-
+  componentWillMount = ()=>{
+      console.log('testing')
   }
   render() {
     return (
@@ -14,7 +14,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Indira</h1>
         </header>
         <p className="App-intro">
-          messages
+          messages below
         </p>
       </div>
     );
