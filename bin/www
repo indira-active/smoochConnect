@@ -3,10 +3,14 @@
 /**
  * Module dependencies.
  */
-
-var app = require('../app');
+const io = require('socket.io')({path: '/api/hook',});
+var app = require('../app')(io);
 var debug = require('debug')('jwttest:server');
 var http = require('http');
+io.on('connect', (socket) => {
+  socket.join('testRoom');
+});
+
 
 /**
  * Get port from environment and store in Express.
@@ -20,7 +24,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+io.attach(server);
 
 /**
  * Listen on provided port, on all network interfaces.

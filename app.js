@@ -1,3 +1,4 @@
+const baseScript = (io)=>{
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -7,6 +8,7 @@ const bodyParser = require('body-parser');
 const SmoochCore = require('smooch-core');
 const cors = require('cors')
 const env = require('node-env-file');
+const mongoose = require('mongoose');
 const smoochFunctions = require('./smooch-functions')
 env(__dirname + '/.env');
 /*const smooch = new SmoochCore({
@@ -33,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.use('/api', api);
-app.use('/hook', api);
+app.use('/hook', hook(io));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.get("*",(req,res)=>{
@@ -58,4 +60,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+return app
+}
+
+module.exports = baseScript;
