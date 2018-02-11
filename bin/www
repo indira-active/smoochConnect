@@ -12,8 +12,8 @@ var http = require('http');
 io.on('connect', (socket) => {
   socket.join('testRoom');
   socket.on('message',(message)=>{
-        smooch.appUsers.sendMessage('68c03f415fce99c4be3f7156', {
-        text: message,
+        smooch.appUsers.sendMessage(message.id, {
+        text: message.msg,
         role: 'appMaker',
         type: 'text'
     }).then(() => {

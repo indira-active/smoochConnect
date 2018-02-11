@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 
 const socket = io('https://morning-cliffs-18397.herokuapp.com/');
 
-
 class Chat extends Component {
   state = {
             chats: [],
@@ -41,7 +40,7 @@ class Chat extends Component {
 
     submitMessage(e) {
         e.preventDefault();
-        socket.emit("message",this.state.text)
+        socket.emit("message",{message:this.state.text,id:'68c03f415fce99c4be3f7156'})
         this.setState({
             chats: this.state.chats.concat([{
                 username: "admin",
