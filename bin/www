@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-const io = require('socket.io')({path: '/api/hook',});
+const io = require('socket.io')({path: '/socket/chat',});
 var app = require('../app')(io);
 var debug = require('debug')('jwttest:server');
 var http = require('http');
