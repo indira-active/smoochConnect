@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import io from 'socket.io-client';
-const socket = io('/', { path: '/socket/chat' });
+const socket = io();
 
 class App extends Component {
   componentWillMount = ()=>{
