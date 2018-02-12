@@ -8,26 +8,11 @@ const socket = io('https://morning-cliffs-18397.herokuapp.com/');
 
 class Chat extends Component {
   state = {
-            chats: [],
             text:""
         }
 
   componentDidMount() {
           this.scrollToBot();
-          socket.on('testEvent', message =>
-        {
-          const msg = JSON.parse(message)
-          console.log(msg)
-          if(msg.trigger==='message:appUser'){
-              this.setState({
-                chats:this.state.chats.concat({
-                username:msg.messages[0].name,
-                content:msg.messages[0].text
-              })
-            })
-          }
-        }
-      );
     }
 
     componentDidUpdate() {
@@ -40,13 +25,11 @@ class Chat extends Component {
 
     submitMessage(e) {
         e.preventDefault();
-        socket.emit("message",{message:this.state.text,id:'68c03f415fce99c4be3f7156'})
-        this.setState({
-            chats: this.state.chats.concat([{
-                username: "admin",
-                content: this.state.text
-            }])
-        });
+        this.props.newMessage({
+            _id:this.props.currentUser._id,
+            content:this.state.text,
+            username:"admin"
+        })
         this.setState({
             text:""
         })
@@ -59,15 +42,15 @@ class Chat extends Component {
 
     render() {
         const username = "admin";
-        const { chats } = this.state;
+        const chats = this.props.messages;
 
         return (
             <div className="chatroom">
-                <h3>Indira</h3>
+                <h3>Indira({this.props.currentUser.userId})</h3>
                 <ul className="chats" ref="chats">
                     {
-                        chats.map((chat) => 
-                            <Message chat={chat} user={username} />
+                        chats.map((chat,index) => 
+                            <Message key={index} chat={chat} user={username} />
                         )
                     }
                 </ul>
