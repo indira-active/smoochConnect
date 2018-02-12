@@ -65,12 +65,14 @@ class App extends Component {
                         username: message.username
                     }]
                 })}
-            } else {
+            } else if(message.username === "admin"){
                 socket.emit("message", {
                     msg: message.content,
                     id: message._id
                 })
                 return result
+            }else{
+            	return result
             }
 
         })
