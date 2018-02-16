@@ -15,5 +15,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://morning-cliffs-18397.herokuapp.com/"
+  "proxy": "https://damp-plateau-11898.herokuapp.com/"
 }

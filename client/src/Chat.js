@@ -4,7 +4,7 @@ import io from 'socket.io-client'
 import Message from './Message.js';
 import ReactDOM from 'react-dom';
 
-const socket = io('https://morning-cliffs-18397.herokuapp.com/');
+const socket = io('https://damp-plateau-11898.herokuapp.com/');
 
 class Chat extends Component {
   state = {

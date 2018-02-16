@@ -5,7 +5,7 @@ import {Button,ButtonToolbar} from "react-bootstrap"
 import './App.css';
 import io from 'socket.io-client'
 
-const socket = io('https://morning-cliffs-18397.herokuapp.com/');
+const socket = io('https://damp-plateau-11898.herokuapp.com/');
 
 
 class App extends Component {
