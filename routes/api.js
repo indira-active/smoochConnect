@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const User = mongoose.model('User');
-
 
 const KEY_ID = process.env.KEY_ID;
 const SECRET = process.env.SECRET;
@@ -38,12 +35,6 @@ router.post('/', (req,res)=>{
     res.json({response:req.body})
     });
 
-router.post('/user',async (req, res, next) => {
-    const user = new User({ smoochId: req.body.id});
-    await user.save()
-    res.status(200);
-    res.end()
-  })
 
 module.exports = router;
 
