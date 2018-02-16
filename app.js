@@ -1,5 +1,9 @@
 const baseScript = (io)=>{
 const express = require('express');
+const session = require('express-session');
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
+const promisify = require('es6-promisify');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -7,9 +11,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const SmoochCore = require('smooch-core');
 const cors = require('cors')
-const env = require('node-env-file');
-const mongoose = require('mongoose');
-env(__dirname + '/.env');
+
 const smooch = new SmoochCore({
     keyId: process.env.KEY_ID,
     secret: process.env.SECRET,
@@ -31,13 +33,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: process.env.SECRET,
+  key: process.env.KEY,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 app.use(cors());
 app.use('/api', api);
 app.use('/hook', hook(io));
 
 app.use(express.static(path.join(__dirname,'public')));
 app.get("*",(req,res)=>{
-  res.json({welcome:"to indira"})
+  res.redirect('/index.html')
 })
 
 // catch 404 and forward to error handler
