@@ -29,7 +29,11 @@ router.get('/', (req,res)=>{
 
 	res.json({jwt:signJwt(userId)})
 
-	});
+    });
+router.get('/loadusers', (req,res)=>{
+        const users = User.find({})
+        res.json(users)
+        });
 
 router.post('/', (req,res)=>{
     console.log(req.body)
