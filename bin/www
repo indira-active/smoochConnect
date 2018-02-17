@@ -12,6 +12,7 @@ mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 require('../models/User');
+const User = mongoose.model('User')
 
 const io = require('socket.io')();
 const content = require('../app')(io);
@@ -31,6 +32,15 @@ io.on('connect', (socket) => {
     }).catch(err=>{
       if(err.status = 404){
         console.log('hey the status code is indeed 404 and we are golden')
+        User.remove({smoochId:message.id},(err,row)=>{
+          if(err){
+            console.log('err is:  ',err)
+          }
+        }).then(res=>{
+          console.log('res is:  ',res)
+        }).catch(err=>{
+          console.log('curious to see how this is gonna work out.')
+        })
       }else{
         console.log('err is',err)
       }
