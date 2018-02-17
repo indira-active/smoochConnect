@@ -6,10 +6,7 @@ const baseScript = (io)=>{
     const cookieParser = require('cookie-parser');
     const bodyParser = require('body-parser');
     const SmoochCore = require('smooch-core');
-    const cors = require('cors')
-    const env = require('node-env-file');
-    const mongoose = require('mongoose');
-    env(__dirname + '/.env');
+    const cors = require('cors');
     const smooch = new SmoochCore({
         keyId: process.env.KEY_ID,
         secret: process.env.SECRET,

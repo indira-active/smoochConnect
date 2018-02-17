@@ -3,6 +3,16 @@
 /**
  * Module dependencies.
  */
+const env = require('node-env-file');
+env(__dirname + '/.env');
+const mongoose = require('mongoose');
+mongoose.connect(process.env.DATABASE);
+mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+mongoose.connection.on('error', (err) => {
+  console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
+});
+require('../models/User');
+
 const io = require('socket.io')();
 const content = require('../app')(io);
 const app = content.app;
