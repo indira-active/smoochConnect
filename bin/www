@@ -28,7 +28,13 @@ io.on('connect', (socket) => {
         type: 'text'
     }).then(() => {
       console.log('lets see what happens on the console')
-    });
+    }).catch(err=>{
+      if(err.status = 404){
+        console.log('hey the status code is indeed 404 and we are golden')
+      }else{
+        console.log('err is',err)
+      }
+    })
   })
 });
 
