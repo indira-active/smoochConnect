@@ -26,6 +26,7 @@ io.on('connect', (socket) => {
         smooch.appUsers.sendMessage(message.id, {
         text: message.msg,
         role: 'appMaker',
+        name:'drew willis',
         type: 'text'
     }).then(() => {
       console.log('lets see what happens on the console')

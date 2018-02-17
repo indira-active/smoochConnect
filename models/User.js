@@ -11,6 +11,10 @@ const reviewSchema = new mongoose.Schema({
   },
   smoochUserId:{
     type: String
+  },
+  active:{
+      type:Boolean,
+      default:true
   }
 });
 

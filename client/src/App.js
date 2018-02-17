@@ -37,11 +37,9 @@ class App extends Component {
         let change = false;
         this.setState((state) => {
 
-
-
             const result = {
                 users: state.users.map((user, index, arr) => {
-                    if (user._id === message._id && user.userId !== message.username) {
+                    if (user._id === message._id && user.userId !== message.username && message.username !== "admin") {
                         change = true;
                         return {
                             ...user,
