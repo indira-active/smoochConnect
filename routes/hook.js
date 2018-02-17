@@ -30,7 +30,8 @@ router.post('/', async (req,res)=>{
       }else if(user && !user.smoochUserId && req.body.appUser.userId){
         User.findOneAndUpdate(
           { smoochId: user.smoochId },
-          { $set: {smoochUserId:req.body.appUser.userId}}
+          { $set: {smoochUserId:req.body.appUser.userId}},
+          { new: true, runValidators: true, context: 'query' }
         ).then(res=>{console.log('res is!!!!',res)}).catch(err=>{console.log('err is:  ',err)})
       }
      }
