@@ -12,11 +12,14 @@ const baseScript = (io)=>{
         secret: process.env.SECRET,
         scope: 'app', // account or app
     });
-    /* smooch.appUsers.getMessages('b89f8eb3de689288333d96d8').then((response) => {
+/*     smooch.appUsers.getMessages('8e3ba1be731c3de50dcdb7b7').then((response) => {
       console.log("\n".repeat(5));
        console.log(JSON.stringify(response,null,2));
        console.log("\n".repeat(5));
-   }); */
+   }).catch(err=>{
+     console.error('looks like there was an error see it below');
+     console.error(err)
+   }) */
     const api = require('./routes/api');
     const hook = require('./routes/hook');
     

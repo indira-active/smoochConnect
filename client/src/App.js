@@ -41,7 +41,17 @@ class App extends Component {
 
             const result = {
                 users: state.users.map((user, index, arr) => {
-                    if (user._id === message._id) {
+                    if (user._id === message._id && user.userId !== message.username) {
+                        change = true;
+                        return {
+                            ...user,
+                            userId:message.username,
+                            messages: user.messages.concat({
+                                    content: message.content,
+                                    username: message.username
+                            })
+                        }
+                    }else if(user._id === message._id){
                         change = true;
                         return {
                             ...user,
