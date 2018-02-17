@@ -24,7 +24,7 @@ router.post('/', async (req,res)=>{
    if(temp){
     user = await User.findOne({ smoochId: req.body.appUser._id })
     if (!user) {
-      let newUser = new User({ smoochId: req.body.appUser._id,userId:req.body.appUser.userId || null});
+      let newUser = new User({ smoochId: req.body.appUser._id,smoochUserId:req.body.appUser.userId || null});
       await newUser.save()
     }
    }
