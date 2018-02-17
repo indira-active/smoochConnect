@@ -21,18 +21,24 @@ router.post('/', async (req,res)=>{
    console.log('^^^^^^^^^^^^^^^^^^^^^')
    let temp = req.body.appUser?req.body.appUser._id:null;
    let user;
-   if(temp){
-    user = await User.findOne({ smoochId: req.body.appUser._id })
-    if (!user) {
-      let newUser = new User({ smoochId: req.body.appUser._id,smoochUserId:req.body.appUser.userId || null});
-      await newUser.save()
-    }else if(user && !user.smoochUserId && req.body.appUser.userId){
-      const user = User.findOneAndUpdate(
-        { _id: req.user._id },
-        { $set: {smoochUserId:req.body.appUser.userId}}
-      ).then(res=>{console.log('res is!!!!',res)}).catch(err=>{console.log('err is:  ',err)})
-    }
+   try{
+    if(temp){
+      user = await User.findOne({ smoochId: req.body.appUser._id })
+      if (!user) {
+        let newUser = new User({ smoochId: req.body.appUser._id,smoochUserId:req.body.appUser.userId || null});
+        await newUser.save()
+      }else if(user && !user.smoochUserId && req.body.appUser.userId){
+        User.findOneAndUpdate(
+          { smoochId: user.smoochId },
+          { $set: {smoochUserId:req.body.appUser.userId}}
+        ).then(res=>{console.log('res is!!!!',res)}).catch(err=>{console.log('err is:  ',err)})
+      }
+     }
    }
+   catch(err){
+     console.error(err)
+   }
+   
     res.status(200);
     res.send()
     });
