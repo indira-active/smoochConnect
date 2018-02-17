@@ -7,8 +7,10 @@ const reviewSchema = new mongoose.Schema({
     default: Date.now
   },
   smoochId: {
-    type: String,
-    required:'you must supply a smooch Id'
+    type: String
+  },
+  smoochUserId:{
+    type: String
   }
 });
 
