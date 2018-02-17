@@ -12,13 +12,13 @@ router.get('/', (req,res)=>{
 router.post('/', async (req,res)=>{
 		const msg = JSON.stringify(req.body,null,2);
 		io.to('testRoom').emit('testEvent', msg)
-   // console.log(`req.body is ${msg} and this is a post request on the hook route`)
-   /*console.log('trigger');
+   console.log(`req.body is ${msg} and this is a post request on the hook route`)
+   console.log('trigger');
    console.log(req.body.trigger);
    console.log('^^^^^^^^^^^^^^^^^^^^^')
    console.log('appUser');
    console.log(req.body.appUser);
-   console.log('^^^^^^^^^^^^^^^^^^^^^')*/
+   console.log('^^^^^^^^^^^^^^^^^^^^^')
    let temp = req.body.appUser?req.body.appUser._id:null;
    let user;
    if(temp){
@@ -26,6 +26,11 @@ router.post('/', async (req,res)=>{
     if (!user) {
       let newUser = new User({ smoochId: req.body.appUser._id,smoochUserId:req.body.appUser.userId || null});
       await newUser.save()
+    }else if(user && !user.smoochUserId && req.body.appUser.userId){
+      const user = User.findOneAndUpdate(
+        { _id: req.user._id },
+        { $set: {smoochUserId:req.body.appUser.userId}}
+      ).then(res=>{console.log('res is!!!!',res)}).catch(err=>{console.log('err is:  ',err)})
     }
    }
     res.status(200);

@@ -27,7 +27,7 @@ class App extends Component {
             if (msg.trigger === 'message:appUser') {
                 this.addToMessages({
                         content: msg.messages[0].text,
-                        username: msg.appUser.userId,
+                        username: msg.appUser.userId || `anonymous : ${msg.appUser._id}`,
                         _id: msg.appUser._id
                     })
             }
@@ -82,7 +82,23 @@ class App extends Component {
     	const USER = this.state.users[this.state.currentUser];
         return(
         	<Hoc>
-        	  <div style={{height:"10vh"}}>{this.state.users.map((user,index)=>{return(<Button onClick={()=>{this.setState({currentUser:index})}} key={index} bsStyle="success" bsSize="large">{user.userId}</Button>)})}</div>
+        	  <div style={{height:"10vh"}}>{this.state.users.map(
+                  (user,index)=>{
+                    return(
+                    <div key={index} style={{display:'inline-block',margin:"3px"}}>
+                      <Button 
+                        onClick={()=>{this.setState({currentUser:index})}} 
+                        bsStyle="success" 
+                        bsSize="medium">{user.userId}</Button>
+                      <Button 
+                        onClick={()=>{this.setState({currentUser:index})}} 
+                        bsStyle="danger" 
+                        bsSize="medium">
+                        close
+                    </Button>
+                    </div>
+                    )})}
+              </div>
             <div className="App">
                 <Chat newMessage={this.addToMessages} currentUser={USER} messages={USER.messages}  />
             </div>

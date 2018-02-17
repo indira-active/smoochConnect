@@ -21,7 +21,7 @@ smooch.appUsers.sendMessage('68c03f415fce99c4be3f7156', {
   console.log('lets see what happens on the console')
 });
 
-smooch.appUsers.getMessages('68c03f415fce99c4be3f7156').then((response) => {
+smooch.appUsers.getMessages('b89f8eb3de689288333d96d8').then((response) => {
    console.log("\n".repeat(5));
     console.log(JSON.stringify(response,null,2));
     console.log("\n".repeat(5));
