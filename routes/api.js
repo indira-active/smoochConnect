@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
-
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
 
 const KEY_ID = process.env.KEY_ID;
 const SECRET = process.env.SECRET;
