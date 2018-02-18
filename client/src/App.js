@@ -4,6 +4,7 @@ import Hoc from "./hoc.js"
 import { Button} from "react-bootstrap"
 import './App.css';
 import io from 'socket.io-client'
+import clone from 'clone'
 
 const socket = io('https://damp-plateau-11898.herokuapp.com/');
 
@@ -14,7 +15,8 @@ class App extends Component {
             userId: "andrewjameswilliams1995@gmail.com",
             _id: "68c03f415fce99c4be3f7156",
             messages: [{ content: "hello there", username: "admin" }],
-            unread:0
+            unread:0,
+            notCalled:true
         }],
         currentUser: 0
     }
@@ -31,6 +33,7 @@ class App extends Component {
                     userId:val.smoochUserId,
                     _id:val.smoochId,
                     messages:[],
+                    notCalled:true,
                     unread:0
                 }
             })
@@ -49,6 +52,38 @@ class App extends Component {
                 })
             }
         });
+    }
+    postDone = (smoochId)=>{
+        fetch(`https://damp-plateau-11898.herokuapp.com/api/updateuser`, {
+            method: 'POST',
+            body: JSON.stringify({smoochId}), 
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            })
+          }).then(res => res.json())
+          .catch(error => console.error('Error:', error))
+          .then(response => console.log('Success:', response));
+    }
+    callUsers = (user,username,index)=>{
+        fetch('https://damp-plateau-11898.herokuapp.com/api/getmessages?appUser='+user)
+        .then(res => res.json())
+        .then(load=>{
+            console.log('LOAD IS BEING CALLED')
+            const messages = load.messages.map(msg=>{
+                return {
+                    content:msg.text.trim() || msg.actions.map((val)=>{
+                        return val.text
+                    }).join('\n'),
+                    username:msg.role === "appMaker"?"admin":username
+                }
+            })
+            const users = clone(this.state.users);
+            const newUser ={...users[index],messages,notCalled:false} 
+            users[index] = newUser;
+
+            this.setState({users,currentUser:index})
+
+        }).catch(err=>{console.log('err is happening',err)})
     }
     wipeUnread = (userIndex)=>{
         this.setState({
@@ -139,11 +174,16 @@ class App extends Component {
                         return (
                             <div key={index} style={{ display: 'inline-block', margin: "3px",position:'relative'}}>
                                 <Button
-                                    onClick={() => { this.setState({ currentUser: index }) }}
-                                    bsStyle="success"
+                                    onClick={() => { return user.notCalled?this.callUsers(user._id,user.userId,index):this.setState({currentUser:index})}}
+                                    bsStyle='primary'
                                     bsSize="small">{user.userId}</Button>
                                 <Button
-                                    onClick={() => { this.setState({ currentUser: index }) }}
+                                    onClick={() => {this.callUsers(user._id,user.userId,index)}}
+                                    bsStyle="success"
+                                    bsSize="small">
+                                    update</Button>
+                                <Button
+                                    onClick={() => {this.postDone(user._id)}}
                                     bsStyle="danger"
                                     bsSize="small">
                                     close</Button>

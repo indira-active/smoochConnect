@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Message from './Message.js';
-import ReactDOM from 'react-dom';
 
 class Chat extends Component {
   state = {
             text:""
         }
+        scrollToBottom = () => {
+            const {thing} = this.refs;
+            thing.scrollTop = thing.scrollHeight - thing.clientHeight;
+          }
+          
+          componentDidUpdate() {
+                this.scrollToBottom(); 
+          }
+          
 
-  componentDidMount() {
-          this.scrollToBot();
-    }
-
-    componentDidUpdate() {
-        this.scrollToBot();
-    }
-
-    scrollToBot() {
-        ReactDOM.findDOMNode(this.refs.chats).scrollTop = ReactDOM.findDOMNode(this.refs.chats).scrollHeight;
-    }
 
     submitMessage(e) {
         e.preventDefault();
@@ -44,14 +41,15 @@ class Chat extends Component {
         return (
             <div className="chatroom">
                 <h3>Indira({this.props.currentUser.userId})</h3>
-                <ul className="chats" ref="chats">
+                <ul ref={`thing`} className="chats">
                     {chats?chats.map((chat,index) => 
                             <Message key={index} chat={chat} user={username} />
                         ):null
                     }
                 </ul>
+                <div style={{height:"1px"}} ref={(el) => { this.messagesEnd = el; }}></div>
                 <form className="input" onSubmit={(e) => this.submitMessage(e)}>
-                    <input type="text" onFocus={()=>this.props.wipeUnread(this.props.currentIndex)} ref="msg" value={this.state.text} onChange={this.typeHandler} />
+                    <input type="text" onFocus={()=>this.props.wipeUnread(this.props.currentIndex)} value={this.state.text} onChange={this.typeHandler} />
                     <input type="submit" value="Submit" />
                 </form>
             </div>

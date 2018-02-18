@@ -15,7 +15,8 @@ const reviewSchema = new mongoose.Schema({
   active:{
       type:Boolean,
       default:true
-  }
+  },
+  messages:[Object]
 });
 
 module.exports = mongoose.model('User', reviewSchema);

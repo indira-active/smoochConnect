@@ -32,6 +32,19 @@ router.get('/', (req,res)=>{
 	res.json({jwt:signJwt(userId)})
 
     });
+router.get('/updateUser', (req,res)=>{
+
+    const smoochId = req.body.smoochId;
+        User.findOneAndUpdate(
+            {smoochId},
+            { $set: {active:false}},
+            { new: true, runValidators: true, context: 'query' }
+          ).then(val=>{
+                res.json({valIs:val})
+          }).catch(err=>{
+              res.json({errIs:err})
+            })
+        });
 router.get('/loadusers', async (req,res)=>{
         const users = await User.find({active:true})
         res.json(users)
@@ -52,7 +65,7 @@ router.post('/user',async (req, res, next) => {
         res.end()
       })
 router.get('/getmessages',(req,res)=>{
-    smooch.appUsers.getMessages(req.query.appUser).then((response) => {
+    smooch.appUsers.getMessages(req.query.appUser,req.query.time?{after:req.query.time}:undefined).then((response) => {
         res.json(response)
      }).catch(err=>{
        console.error('looks like there was an error see it below');
