@@ -54,6 +54,7 @@ class App extends Component {
         });
     }
     postDone = (smoochId)=>{
+        this.setState({currentUser:0,users:this.state.users.filter(user=>user._id !== smoochId)})
         fetch(`https://damp-plateau-11898.herokuapp.com/api/updateuser`, {
             method: 'POST',
             body: JSON.stringify({smoochId}), 
@@ -169,7 +170,7 @@ class App extends Component {
         const USER = this.state.users[this.state.currentUser];
         return (
             <Hoc>
-                <div style={{ height: "10vh", overflow: "scroll" }}>{this.state.users.map(
+                <div style={{ height: "10vh", overflow: "scroll" }}>{USER?this.state.users.map(
                     (user, index) => {
                         return (
                             <div key={index} style={{ display: 'inline-block', margin: "3px",position:'relative'}}>
@@ -192,11 +193,11 @@ class App extends Component {
                                 </span>
                             </div>
                         )
-                    })}
+                    }):(<h3 style={{textAlign:"center"}}>NO MORE USERS</h3>)}
                 </div>
-                <div className="App">
+                {USER?(<div className="App">
                     <Chat wipeUnread={this.wipeUnread} newMessage={this.addToMessages} currentIndex={this.state.currentUser} currentUser={USER} messages={USER.messages} />
-                </div>
+                </div>):null}
             </Hoc>
         )
     }
