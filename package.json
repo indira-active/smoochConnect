@@ -1,12 +1,14 @@
 {
   "name": "jwttest",
+  "config":{"message":"test"},
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "save": "git add --all && git commit -m'test' && git push heroku master && git push origin master",
     "build": "cd reactUnoFlow && npm run build ",
-    "publish": "npm run build && npm run save"
+    "publish": "npm run build && npm run save",
+    "local": "node ./bin/www"
   },
   "engines": {
     "node": "9.3.0"
@@ -25,5 +27,8 @@
     "serve-favicon": "~2.4.5",
     "smooch-core": "5.7.0",
     "socket.io": "2.0.4"
+  },
+  "devDependencies": {
+    "jsdoc": "3.5.5"
   }
 }

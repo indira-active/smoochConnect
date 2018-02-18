@@ -20,6 +20,7 @@ const app = content.app;
 const smooch = content.smooch;
 var debug = require('debug')('jwttest:server');
 var http = require('http');
+// this code needs to be modularized pronto.
 io.on('connect', (socket) => {
     socket.join('testRoom');
     socket.on('message', (message) => {
