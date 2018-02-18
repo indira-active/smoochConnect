@@ -42,7 +42,7 @@ const baseScript = (io)=>{
     
     app.use(express.static(path.join(__dirname,'public')));
     app.get("*",(req,res)=>{
-      res.json({welcome:"to indira"})
+      res.json({welcome:"to indira api endpoint"})
     })
     
     // catch 404 and forward to error handler
