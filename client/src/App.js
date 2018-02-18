@@ -40,7 +40,7 @@ class App extends Component {
                     unread:0
                 }
             })
-            this.setState({users})
+            this.setState({users,currentUser:0})
         }).catch(err=>{console.log('err is happening',err)})
     }
     socketCall = () => {
