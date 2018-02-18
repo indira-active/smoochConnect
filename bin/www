@@ -35,6 +35,7 @@ io.on('connect', (socket) => {
       if(err.status = 404){
         console.log('hey the status code is indeed 404 and we are golden')
         User.remove({smoochId:message.id}).then(res=>{
+          socket.emit('reset',{dummy:"text"})
           console.log('res is:  ',res)
         }).catch(err=>{
           console.log('curious to see how this is gonna work out.')

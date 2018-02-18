@@ -23,6 +23,9 @@ class App extends Component {
     componentDidMount() {
         this.socketCall()
         this.loadUsers()
+        socket.on('reset',()=>{
+            this.loadUsers()
+        })
     }
     loadUsers = () => {
         fetch('https://damp-plateau-11898.herokuapp.com/api/loadusers')
