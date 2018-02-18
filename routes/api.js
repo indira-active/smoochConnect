@@ -32,7 +32,7 @@ router.get('/', (req,res)=>{
 	res.json({jwt:signJwt(userId)})
 
     });
-router.get('/updateUser', (req,res)=>{
+router.post('/updateuser', (req,res)=>{
 
     const smoochId = req.body.smoochId;
         User.findOneAndUpdate(
