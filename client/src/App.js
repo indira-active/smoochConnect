@@ -19,11 +19,12 @@ class App extends Component {
     }
     componentDidMount() {
         this.socketCall()
+        this.loadUsers()
     }
     loadUsers = () => {
-     /*    fetch('https://damp-plateau-11898.herokuapp.com/api/loadusers')
+        fetch('https://damp-plateau-11898.herokuapp.com/api/loadusers')
         .then(res => res.json())
-        .then(load=>console.log(load)) */
+        .then(load=>console.log(load))
     }
     socketCall = () => {
         socket.on('testEvent', message => {

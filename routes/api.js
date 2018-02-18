@@ -30,8 +30,8 @@ router.get('/', (req,res)=>{
 	res.json({jwt:signJwt(userId)})
 
     });
-router.get('/loadusers', (req,res)=>{
-        const users = User.find({})
+router.get('/loadusers', async (req,res)=>{
+        const users = await User.find({})
         res.json(users)
         });
 
