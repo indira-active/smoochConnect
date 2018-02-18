@@ -32,7 +32,7 @@ router.get('/', (req,res)=>{
 
     });
 router.get('/loadusers', async (req,res)=>{
-        const users = await User.find({})
+        const users = await User.find({active:true})
         res.json(users)
         });
 
