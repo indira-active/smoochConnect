@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import io from 'socket.io-client'
 import Message from './Message.js';
 import ReactDOM from 'react-dom';
-
-const socket = io('https://damp-plateau-11898.herokuapp.com/');
 
 class Chat extends Component {
   state = {
@@ -48,14 +45,13 @@ class Chat extends Component {
             <div className="chatroom">
                 <h3>Indira({this.props.currentUser.userId})</h3>
                 <ul className="chats" ref="chats">
-                    {
-                        chats.map((chat,index) => 
+                    {chats?chats.map((chat,index) => 
                             <Message key={index} chat={chat} user={username} />
-                        )
+                        ):null
                     }
                 </ul>
                 <form className="input" onSubmit={(e) => this.submitMessage(e)}>
-                    <input type="text" ref="msg" value={this.state.text} onChange={this.typeHandler} />
+                    <input type="text" onFocus={()=>this.props.wipeUnread(this.props.currentIndex)} ref="msg" value={this.state.text} onChange={this.typeHandler} />
                     <input type="submit" value="Submit" />
                 </form>
             </div>

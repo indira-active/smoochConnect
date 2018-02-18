@@ -12,16 +12,16 @@ const baseScript = (io)=>{
         secret: process.env.SECRET,
         scope: 'app', // account or app
     });
-/*      smooch.appUsers.getMessages('a40202931d3f6780bf418279').then((response) => {
+     /* smooch.appUsers.getMessages('a40202931d3f6780bf418279').then((response) => {
       console.log("\n".repeat(5));
        console.log(response.messages);
        console.log("\n".repeat(5));
    }).catch(err=>{
      console.error('looks like there was an error see it below');
      console.error(err)
-   })  */
-    const api = require('./routes/api');
-    const hook = require('./routes/hook');
+   }) */ 
+    const api = require('./routes/api')(smooch);
+    const hook = require('./routes/hook')(io,smooch);
     
     
     const app = express();
@@ -38,7 +38,7 @@ const baseScript = (io)=>{
     app.use(cookieParser());
     app.use(cors());
     app.use('/api', api);
-    app.use('/hook', hook(io));
+    app.use('/hook', hook);
     
     app.use(express.static(path.join(__dirname,'public')));
     app.get("*",(req,res)=>{

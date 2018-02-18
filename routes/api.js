@@ -1,3 +1,4 @@
+const exportValue = (smooch)=>{
 var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -35,6 +36,10 @@ router.get('/loadusers', async (req,res)=>{
         const users = await User.find({active:true})
         res.json(users)
         });
+router.get('/loadtestusers', async (req,res)=>{
+            const test = new User({active:"true",smoochId:"test",smoochUserId:"test"}).save()
+            res.json({done:"done"})
+            });
 
 router.post('/', (req,res)=>{
     console.log(req.body)
@@ -46,7 +51,17 @@ router.post('/user',async (req, res, next) => {
         res.status(200);
         res.end()
       })
+router.get('/getmessages',(req,res)=>{
+    smooch.appUsers.getMessages(req.query.appUser).then((response) => {
+        res.json(response)
+     }).catch(err=>{
+       console.error('looks like there was an error see it below');
+       console.error(err)
+     })
+})
 
 
-module.exports = router;
+return router
+ }
 
+module.exports = exportValue
