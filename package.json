@@ -9,7 +9,8 @@
     "start": "node ./bin/www",
     "save": "git add --all && git commit -m'test' && git push heroku master && git push origin master",
     "build": "cd reactUnoFlow && npm run build ",
-    "publish": "npm run build && npm run save"
+    "publish": "npm run build && npm run save",
+    "test": "KEY_ID=app_5a70141be964c6003fe08afc SECRET=hIraqmK_mDq53XembMweqa86 mocha util/jwt/test.js"
   },
   "engines": {
     "node": "9.3.0"
