@@ -18,9 +18,10 @@ function signJwt(userId){
                 kid: KEY_ID
             }
         });
-        console.log(result == 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDI4ODB9.f2muxRn9alInTgbdGfhttkGqRU9rTT3AKp0OPGPjDco');
+       const testValue =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDM0NDR9.Gun2QEF7uvv7hNwuVbly3WEYp4yEsAcY2fjOA1BSyQw'
+        console.log(result == testValue);
         console.log('result is',result);
-        console.log('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDI4ODB9.f2muxRn9alInTgbdGfhttkGqRU9rTT3AKp0OPGPjDco');
+        console.log(testValue);
         return result;
 }
 module.exports = signJwt;
