@@ -10,7 +10,7 @@ const exportValue = (smooch) => {
     router.get('/', (req, res) => {
 
         const userId = req.query.userId;
-
+        console.log('on the route side userId is',userId)
         res.json({
             jwt: signJwt(userId)
         })

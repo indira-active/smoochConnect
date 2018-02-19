@@ -19,6 +19,8 @@ function signJwt(userId){
             }
         });
         console.log(result == 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDI4ODB9.f2muxRn9alInTgbdGfhttkGqRU9rTT3AKp0OPGPjDco');
+        console.log('result is',result);
+        console.log('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDI4ODB9.f2muxRn9alInTgbdGfhttkGqRU9rTT3AKp0OPGPjDco');
         return result;
 }
 module.exports = signJwt;
