@@ -1,29 +1,12 @@
 const exportValue = (smooch) => {
     var express = require('express');
     var router = express.Router();
-    const jwt = require('jsonwebtoken');
+    
     const mongoose = require('mongoose');
     const User = mongoose.model('User');
 
-    const KEY_ID = process.env.KEY_ID;
-    const SECRET = process.env.SECRET;
-
-    const signJwt = function(userId) {
-        return jwt.sign({
-                scope: 'appUser',
-                userId: userId
-            },
-            SECRET, {
-                header: {
-                    alg: 'HS256',
-                    typ: 'JWT',
-                    kid: KEY_ID
-                }
-            });
-    }
-
-
-
+    const signJwt = require('../util/jwt');
+    
     router.get('/', (req, res) => {
 
         const userId = req.query.userId;

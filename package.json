@@ -1,19 +1,21 @@
 {
   "name": "jwttest",
-  "config":{"message":"test"},
+  "config": {
+    "message": "test"
+  },
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "save": "git add --all && git commit -m'test' && git push heroku master && git push origin master",
     "build": "cd reactUnoFlow && npm run build ",
-    "publish": "npm run build && npm run save",
-    "local": "node ./bin/www"
+    "publish": "npm run build && npm run save"
   },
   "engines": {
     "node": "9.3.0"
   },
   "dependencies": {
+    "assert": "1.4.1",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "cors": "2.8.4",
@@ -29,6 +31,7 @@
     "socket.io": "2.0.4"
   },
   "devDependencies": {
-    "jsdoc": "3.5.5"
+    "jsdoc": "3.5.5",
+    "mocha": "5.0.1"
   }
 }
