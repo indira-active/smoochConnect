@@ -6,8 +6,8 @@ const SECRET='hIraqmK_mDq53XembMweqa86';
 const SECRET = process.env.SECRET; */
 
 function signJwt(userId){
-    console.log('userId is',userId)
-    return jwt.sign({
+    console.log('userId is',userId);
+    const result = jwt.sign({
             scope: 'appUser',
             userId: userId
         },
@@ -18,6 +18,7 @@ function signJwt(userId){
                 kid: KEY_ID
             }
         });
+        console.log(result == 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDI4ODB9.f2muxRn9alInTgbdGfhttkGqRU9rTT3AKp0OPGPjDco');
+        return result;
 }
-console.log(signJwt('andrewjameswilliams1995@gmail.com') == 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImFwcF81YTcwMTQxYmU5NjRjNjAwM2ZlMDhhZmMifQ.eyJzY29wZSI6ImFwcFVzZXIiLCJ1c2VySWQiOiJhbmRyZXdqYW1lc3dpbGxpYW1zMTk5NUBnbWFpbC5jb20iLCJpYXQiOjE1MTkwMDI4ODB9.f2muxRn9alInTgbdGfhttkGqRU9rTT3AKp0OPGPjDco')
 module.exports = signJwt;
