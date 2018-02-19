@@ -1,2 +1,2 @@
 # smoochConnect
-smooch admin interface
+smooch api endpoint
