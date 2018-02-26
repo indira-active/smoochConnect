@@ -16,9 +16,11 @@ const baseScript = (io) => {
   const bodyParser = require('body-parser');
   const SmoochCore = require('smooch-core');
   const cors = require('cors');
+  const KEY_ID = process.env.node_env === 'production'?process.env.KEY_ID:process.env.KEY_ID1;
+  const SECRET = process.env.node_env === 'production'?process.env.SECRET:process.env.SECRET1;
   const smooch = new SmoochCore({
-      keyId: process.env.KEY_ID,
-      secret: process.env.SECRET,
+      keyId: KEY_ID,
+      secret: SECRET,
       scope: 'app', // account or app
   });
   /* smooch.appUsers.getMessages('a40202931d3f6780bf418279').then((response) => {
