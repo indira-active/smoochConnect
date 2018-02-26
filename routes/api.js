@@ -31,6 +31,29 @@ const exportValue = (smooch) => {
             })
         })
     });
+    router.post('/updateusertoactive', (req, res) => {
+
+        const smoochId = req.body.smoochId;
+        User.findOneAndUpdate({
+            smoochId
+        }, {
+            $set: {
+                active: true
+            }
+        }, {
+            new: true,
+            runValidators: true,
+            context: 'query'
+        }).then(val => {
+            res.json({
+                valIs: val
+            })
+        }).catch(err => {
+            res.json({
+                errIs: err
+            })
+        })
+    });
     router.get('/generateusers', (req, res) => {
         const userId = req.query.userId
         console.log('userId is', userId)
