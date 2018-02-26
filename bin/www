@@ -4,10 +4,10 @@
  * Module dependencies.
  */
 const env = require('node-env-file');
-if(!process.env.node_env === 'production'){
+if(!process.env.NODE_ENV === 'production'){
     env(__dirname + '/.env')
 }
-const DATABASE = process.env.node_env === 'production'?process.env.DATABASE:process.env.DATABASE1;
+const DATABASE = process.env.NODE_ENV === 'production'?process.env.DATABASE:process.env.DATABASE1;
 const mongoose = require('mongoose');
 mongoose.connect(DATABASE);
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises

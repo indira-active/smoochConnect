@@ -16,11 +16,12 @@ const baseScript = (io) => {
   const bodyParser = require('body-parser');
   const SmoochCore = require('smooch-core');
   const cors = require('cors');
-  const KEY_ID = process.env.node_env === 'production'?process.env.KEY_ID:process.env.KEY_ID1;
-  const SECRET = process.env.node_env === 'production'?process.env.SECRET:process.env.SECRET1;
-  console.log('------------------------------'.repeat(10));
+  const KEY_ID = process.env.NODE_ENV === 'production'?process.env.KEY_ID:process.env.KEY_ID1;
+  const SECRET = process.env.NODE_ENV === 'production'?process.env.SECRET:process.env.SECRET1;
+  console.log('------------------------------\n'.repeat(10));
   console.log(KEY_ID,SECRET)
-  console.log('------------------------------'.repeat(10));
+  console.log('------------------------------\n'.repeat(10));
+  console.log(NODE_ENV)
   const smooch = new SmoochCore({
       keyId: KEY_ID,
       secret: SECRET,
