@@ -21,7 +21,7 @@ const io = require('socket.io')();
 const content = require('../app')(io);
 const app = content.app;
 const smooch = content.smooch;
-const debug = require('debug')('jwttest:server');
+const debug = require('debug')('jwt:server');
 const http = require('http');
 // this code needs to be modularized pronto.
 io.on('connect', (socket) => {
@@ -60,7 +60,7 @@ io.on('connect', (socket) => {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '8080');
+const port = normalizePort(process.env.PORT || 8080);
 app.set('port', port);
 
 /**
@@ -76,7 +76,7 @@ io.attach(server);
 
 server.listen(port);
 server.on('error', onError);
-server.on('listening', onListening);
+//server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
