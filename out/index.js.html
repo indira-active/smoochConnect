@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const jwt = require('jsonwebtoken');
+const KEY_ID = process.env.KEY_ID;
+const SECRET = process.env.SECRET; 
+/** @function
+ * @name signJwt
+ * will use the SECRET and KEY_ID to create a unique jwt for the smooch instantiation
+ * first set of characters up until the first period is unique. rest of the characters are
+ * different per method call*/
+function signJwt(userId){
+    const result = jwt.sign({
+            scope: 'appUser',
+            userId: userId
+        },
+        SECRET, {
+            header: {
+                alg: 'HS256',
+                typ: 'JWT',
+                kid: KEY_ID
+            }
+        });
+        return result;
+}
+module.exports = signJwt;</code></pre>
+        </article>
+    </section>
 
 
 
