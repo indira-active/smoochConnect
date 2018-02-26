@@ -21,7 +21,7 @@ const baseScript = (io) => {
   console.log('------------------------------\n'.repeat(10));
   console.log(KEY_ID,SECRET)
   console.log('------------------------------\n'.repeat(10));
-  console.log(NODE_ENV)
+  console.log(process.env.NODE_ENV)
   const smooch = new SmoochCore({
       keyId: KEY_ID,
       secret: SECRET,
