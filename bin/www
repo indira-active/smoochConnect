@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 const env = require('node-env-file');
-env(__dirname + '/.env');
+env(__dirname + '/.env').catch(err=>{console.log('is the error happening here?')});
 const DATABASE = process.env.node_env === 'production'?process.env.DATABASE:process.env.DATABASE1;
 const mongoose = require('mongoose');
 mongoose.connect(DATABASE);
