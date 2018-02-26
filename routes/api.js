@@ -4,18 +4,7 @@ const exportValue = (smooch) => {
     
     const mongoose = require('mongoose');
     const User = mongoose.model('User');
-
-    const signJwt = require('../util/jwt');
     
-    router.get('/', (req, res) => {
-
-        const userId = req.query.userId;
-        console.log('on the route side userId is',userId)
-        res.json({
-            jwt: signJwt(userId)
-        })
-
-    });
     router.post('/updateuser', (req, res) => {
 
         const smoochId = req.body.smoochId;
