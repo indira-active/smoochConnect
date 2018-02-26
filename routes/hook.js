@@ -48,6 +48,18 @@ const hook = (io) => {
                   }).catch(err => {
                       console.log('err is:  ', err)
                   })
+              }else{
+                  User.findOneAndUpdate({
+                      smoochId: user.smoochId
+                  }, {
+                      $set: {
+                          active: true
+                      }
+                  }).then(res => {
+                      console.log('res is!!!!', res)
+                  }).catch(err => {
+                      console.log('err is:  ', err)
+                  })
               }
           }
       } catch (err) {

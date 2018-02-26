@@ -16,8 +16,8 @@ const baseScript = (io) => {
   const bodyParser = require('body-parser');
   const SmoochCore = require('smooch-core');
   const cors = require('cors');
-  const KEY_ID = process.env.NODE_ENV === 'production'?process.env.KEY_ID:process.env.KEY_ID1;
-  const SECRET = process.env.NODE_ENV === 'production'?process.env.SECRET:process.env.SECRET1;
+  const KEY_ID = process.env.NODE_ENV === 'production'?process.env.KEY_ID:process.env.KEY_ID1
+  const SECRET = process.env.NODE_ENV === 'production'?process.env.SECRET:process.env.SECRET1
   console.log('------------------------------\n'.repeat(10));
   console.log(KEY_ID,SECRET)
   console.log('------------------------------\n'.repeat(10));
