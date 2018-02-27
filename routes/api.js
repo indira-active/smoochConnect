@@ -91,11 +91,11 @@ const exportValue = (smooch) => {
             // limit to only 5 results
             .limit(5);*/
 
-            const testValue = await User
+            const users = await User
             .find({
                 smoochUserId: { "$regex": req.query.q, "$options": "i" }
             }).sort({smoochUserId:1})
-            res.json(testValue);
+            res.json(users);
 });
     router.get('/generatehundredusers', (req, res) => {
         res.json({
