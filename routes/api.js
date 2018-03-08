@@ -119,6 +119,11 @@ const exportValue = (smooch) => {
         })
         res.json(users)
     });
+
+    router.get('/loadusersall', async(req, res) => {
+        const users = await User.find()
+        res.json(users)
+    });
     router.get('/testsend', async(req, res) => {
         smooch.appUsers.sendMessage('test3@test3.com', {
             text: 'this is sent from the backend',
