@@ -10,7 +10,9 @@
     "save": "git add --all && git commit -m'test' && git push heroku master && git push origin master",
     "build": "cd reactUnoFlow && npm run build ",
     "publish": "npm run build && npm run save",
-    "test": "KEY_ID=app_5a70141be964c6003fe08afc SECRET=hIraqmK_mDq53XembMweqa86 mocha util/jwt/test.js"
+    "test": "KEY_ID=app_5a70141be964c6003fe08afc SECRET=hIraqmK_mDq53XembMweqa86 mocha util/jwt/test.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": "9.3.0"
@@ -33,10 +35,12 @@
     "serve-favicon": "~2.4.5",
     "smooch-core": "5.7.0",
     "socket.io": "2.0.4",
-    "uuid": "3.2.1"
+    "uuid": "3.2.1",
+    "snyk": "^1.316.2"
   },
   "devDependencies": {
     "jsdoc": "3.5.5",
     "mocha": "5.0.1"
-  }
+  },
+  "snyk": true
 }
